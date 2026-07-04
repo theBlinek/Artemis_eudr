@@ -1,0 +1,22 @@
+services:
+  eudrbatch:
+    image: registry.itm.com.pl/eudrbatch:latest
+    container_name: eudrbatch
+    user: "2000"
+    restart: always
+    ports:
+      - "40005:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - DatabaseSettings__DB_HOST=10.30.51.102
+      - DatabaseSettings__DB_PORT=3050
+      - DatabaseSettings__DB_PATH=INT_EUDR
+      - DatabaseSettings__DB_USER=SYSDBA
+      - DatabaseSettings__DB_PASSWORD=masterkey
+      - Eudr__Gs1Prefix=INT
+    networks:
+      - LAN
+
+networks:
+  LAN:
+    external: true
